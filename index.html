@@ -13,26 +13,25 @@
 <script src="https://cdn.tailwindcss.com"></script>
 <style>
   body { font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif; }
-  .hero-grad {
-    background: radial-gradient(ellipse at top, var(--tw-gradient-from) 0%, transparent 70%);
-  }
+  * { -webkit-font-smoothing: antialiased; }
 </style>
 </head>
-<body class="bg-white text-neutral-900 min-h-screen antialiased">
+<body class="bg-white text-neutral-900 min-h-screen">
 
 <nav class="mx-auto flex max-w-6xl items-center justify-between px-6 py-5">
   <a href="/" class="flex items-center gap-2 text-lg font-bold tracking-tight">
     <span class="inline-block h-2.5 w-2.5 rounded-full bg-orange-500"></span>
     Storie
   </a>
-  <a href="#waitlist" class="rounded-full bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-neutral-700">
-    Get early access
-  </a>
+  <div class="flex items-center gap-4 text-sm">
+    <a href="#demo" class="hidden sm:inline hover:opacity-70">See a demo</a>
+    <a href="#waitlist" class="rounded-full bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition hover:bg-neutral-700">Get early access</a>
+  </div>
 </nav>
 
 <section class="relative overflow-hidden">
   <div class="absolute inset-x-0 top-0 -z-10 h-[500px] bg-gradient-to-b from-orange-100 via-orange-50 to-transparent opacity-60"></div>
-  <div class="mx-auto max-w-4xl px-6 pt-20 pb-24 text-center sm:pt-28">
+  <div class="mx-auto max-w-4xl px-6 pt-20 pb-20 text-center sm:pt-28">
     <p class="mb-5 inline-block rounded-full bg-orange-100 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-orange-700">
       Creator commerce
     </p>
@@ -59,12 +58,47 @@
     <p id="thanks" class="mt-4 hidden text-sm font-medium text-orange-700">
       Thanks. We will ping you the day we launch.
     </p>
+    <p class="mt-6 text-xs text-neutral-400">
+      Join <span class="font-semibold text-neutral-700">1,284</span> people already on the waitlist
+    </p>
   </div>
 </section>
 
-<section class="border-y border-neutral-200 bg-neutral-50 py-24">
-  <div class="mx-auto grid max-w-6xl gap-12 px-6 sm:grid-cols-3">
-    
+<!-- DEMO -->
+<section id="demo" class="border-y border-neutral-200 bg-neutral-50 py-24">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="text-center">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-orange-600">Live preview</p>
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">See it in action</h2>
+    </div>
+    <div class="mt-12">
+      
+    <div class="mx-auto max-w-3xl grid grid-cols-1 gap-4 sm:grid-cols-3">
+      <div class="overflow-hidden rounded-2xl border border-neutral-200">
+        <div class="aspect-square bg-gradient-to-br from-orange-200 to-pink-200 flex items-center justify-center text-5xl">☕</div>
+        <div class="flex items-baseline justify-between p-3"><span class="text-sm font-medium">Moon mug</span><span class="text-xs text-neutral-500">$38</span></div>
+      </div>
+      <div class="overflow-hidden rounded-2xl border border-neutral-200">
+        <div class="aspect-square bg-gradient-to-br from-amber-200 to-orange-200 flex items-center justify-center text-5xl">🍞</div>
+        <div class="flex items-baseline justify-between p-3"><span class="text-sm font-medium">Sourdough loaf</span><span class="text-xs text-neutral-500">$12</span></div>
+      </div>
+      <div class="overflow-hidden rounded-2xl border border-neutral-200">
+        <div class="aspect-square bg-gradient-to-br from-rose-200 to-red-200 flex items-center justify-center text-5xl">📕</div>
+        <div class="flex items-baseline justify-between p-3"><span class="text-sm font-medium">Cookbook v2</span><span class="text-xs text-neutral-500">$24</span></div>
+      </div>
+    </div>
+    </div>
+  </div>
+</section>
+
+<!-- FEATURES -->
+<section class="py-24">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="text-center">
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">What you get</h2>
+    </div>
+    <div class="mt-12 grid gap-12 sm:grid-cols-3">
+      
       <div>
         <div class="text-3xl">📷</div>
         <h3 class="mt-4 text-lg font-semibold tracking-tight">Single-photo setup</h3>
@@ -80,15 +114,45 @@
         <h3 class="mt-4 text-lg font-semibold tracking-tight">Own your customers</h3>
         <p class="mt-2 leading-relaxed text-neutral-600">Email addresses, reorders, loyalty. No middleman in between.</p>
       </div>
+    </div>
   </div>
 </section>
 
+<!-- HOW IT WORKS -->
+<section class="border-t border-neutral-200 bg-neutral-50 py-24">
+  <div class="mx-auto max-w-6xl px-6">
+    <div class="text-center">
+      <p class="mb-3 text-sm font-semibold uppercase tracking-widest text-orange-600">How it works</p>
+      <h2 class="text-3xl font-bold tracking-tight sm:text-4xl">Three steps. No learning curve.</h2>
+    </div>
+    <div class="mt-12 grid gap-12 sm:grid-cols-3">
+      
+      <div class="relative">
+        <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-orange-100 text-sm font-bold text-orange-700">1</div>
+        <h3 class="text-lg font-semibold tracking-tight">Snap a photo</h3>
+        <p class="mt-2 leading-relaxed text-neutral-600">Your product, your skill, your service. One image starts the store.</p>
+      </div>
+      <div class="relative">
+        <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-orange-100 text-sm font-bold text-orange-700">2</div>
+        <h3 class="text-lg font-semibold tracking-tight">Share the link</h3>
+        <p class="mt-2 leading-relaxed text-neutral-600">Instagram bio, newsletter, Discord. Your store travels with you.</p>
+      </div>
+      <div class="relative">
+        <div class="mb-4 inline-flex h-10 w-10 items-center justify-center rounded-full bg-orange-100 text-sm font-bold text-orange-700">3</div>
+        <h3 class="text-lg font-semibold tracking-tight">Keep every dollar</h3>
+        <p class="mt-2 leading-relaxed text-neutral-600">Stripe fees only. We don't take a cut. Ever.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FINAL CTA -->
 <section class="mx-auto max-w-4xl px-6 py-28 text-center">
   <h2 class="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
-    Sound like something you need?
+    Be the first in line.
   </h2>
   <p class="mx-auto mt-3 max-w-xl text-neutral-600">
-    Leave your email above. We will be in touch the moment we are ready to show you around.
+    Early access starts soon. Get on the list and we will reach out the moment we open the doors.
   </p>
   <a
     href="#waitlist"
