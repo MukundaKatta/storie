@@ -113,7 +113,11 @@ export default async function DashboardPage() {
         </div>
       </nav>
 
-      <DashboardUI store={store} products={products ?? []} />
+      <DashboardUI
+        store={store}
+        products={products ?? []}
+        stripeAccountId={store.stripe_account_id ?? null}
+      />
     </div>
   );
 }

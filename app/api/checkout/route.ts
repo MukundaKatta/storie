@@ -35,7 +35,7 @@ export async function POST(request: Request) {
 
   const { data: store } = await supabase
     .from("stores")
-    .select("slug")
+    .select("slug, stripe_account_id")
     .eq("id", product.store_id)
     .single();
 
@@ -44,6 +44,12 @@ export async function POST(request: Request) {
   }
   const origin = new URL(request.url).origin;
   const stripe = getStripe();
+
+  const feeBps = parseInt(process.env.PLATFORM_FEE_BPS ?? "500", 10);
+  const applicationFeeAmount =
+    store.stripe_account_id && feeBps > 0
+      ? Math.round((product.price_cents * feeBps) / 10000)
+      : undefined;
 
   const session = await stripe.checkout.sessions.create({
     mode: "payment",
@@ -63,6 +69,14 @@ export async function POST(request: Request) {
     ],
     success_url: `${origin}/checkout/success?session_id={CHECKOUT_SESSION_ID}`,
     cancel_url: `${origin}/s/${store.slug}/${product.id}`,
+    ...(store.stripe_account_id
+      ? {
+          payment_intent_data: {
+            application_fee_amount: applicationFeeAmount,
+            transfer_data: { destination: store.stripe_account_id },
+          },
+        }
+      : {}),
   });
 
   // Pre-record the pending order via service client (bypasses RLS).

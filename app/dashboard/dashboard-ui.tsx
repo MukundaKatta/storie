@@ -10,6 +10,7 @@ type Store = {
   slug: string;
   name: string;
   bio: string;
+  stripe_account_id?: string | null;
 };
 
 type Product = {
@@ -23,9 +24,11 @@ type Product = {
 export function DashboardUI({
   store,
   products,
+  stripeAccountId,
 }: {
   store: Store;
   products: Product[];
+  stripeAccountId: string | null;
 }) {
   const storeUrl = `/s/${store.slug}`;
 
@@ -51,6 +54,11 @@ export function DashboardUI({
           <AddProductForm />
         </section>
       </div>
+
+      <section className="mt-10 rounded-2xl border border-neutral-200 p-6">
+        <h2 className="text-lg font-semibold">Payments</h2>
+        <StripeConnectPanel stripeAccountId={stripeAccountId} />
+      </section>
 
       <section className="mt-10">
         <h2 className="text-lg font-semibold">
@@ -237,6 +245,39 @@ function AddProductForm() {
         {isPending ? "Adding…" : "Add product"}
       </button>
     </form>
+  );
+}
+
+function StripeConnectPanel({ stripeAccountId }: { stripeAccountId: string | null }) {
+  if (stripeAccountId) {
+    return (
+      <div className="mt-4 flex items-center gap-3">
+        <span className="inline-flex items-center gap-1.5 rounded-full bg-green-50 px-3 py-1 text-sm font-medium text-green-700">
+          <span className="h-2 w-2 rounded-full bg-green-500" />
+          Stripe connected
+        </span>
+        <a
+          href="/api/stripe/connect"
+          className="text-sm text-neutral-500 hover:text-neutral-900 hover:underline"
+        >
+          Reconnect
+        </a>
+      </div>
+    );
+  }
+
+  return (
+    <div className="mt-4">
+      <p className="text-sm text-neutral-600">
+        Connect your Stripe account so buyers pay you directly.
+      </p>
+      <a
+        href="/api/stripe/connect"
+        className="mt-3 inline-block rounded-full bg-[#635BFF] px-5 py-2.5 text-sm font-medium text-white hover:bg-[#4F46E5]"
+      >
+        Connect Stripe
+      </a>
+    </div>
   );
 }
 
